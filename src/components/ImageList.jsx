@@ -4,12 +4,17 @@ import ImageShow from './ImageShow';
 const ImageList = (props) => {
 
     const renderedImages = props.images.map(function(image){
-        //console.log(image.links[0].href);
+        
         let imageUrl = '';
         if(image.links[0]){
             imageUrl = image.links[0].href;
         }
-        return <ImageShow title='Super title' location='ento tuta' photogrName='Opov' imageUrl={imageUrl} key={image.href} />
+
+        let title = '';
+        if(image.data[0]){
+            title = image.data[0].title;
+        }
+        return <ImageShow title={title} location='ento tuta' photogrName='Opov' imageUrl={imageUrl} key={image.href} />
     });
 
     return (

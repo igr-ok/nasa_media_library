@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const searchImages = async (term) => {
+const searchImages = async (term, yearStart, yearEnd) => {
     //try catch here
    const response = await axios.get('https://images-api.nasa.gov/search', {
     headers: {

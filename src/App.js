@@ -6,10 +6,11 @@ import { useState } from 'react';
 const App = () => {
 
     const [images, setImages] = useState([]);
+    const [metadata, setMetadata] = useState([]);
 
-    const handleSubmit = async (term) => {
+    const handleSubmit = async (term, yearStart, yearEnd) => {
 
-        let result = await searchImages(term);
+        let result = await searchImages(term, yearStart, yearEnd);
         
         setImages(result);
     }

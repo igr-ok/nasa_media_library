@@ -1,28 +1,14 @@
 import './ImageShow.css';
 
-const ImageShow = (props) => {
-
-    // let toShow = 'https://picsum.photos/200';
-
-    // let preStr = '';
-
-    // if(props.imageUrl.links[0]){
-    //     preStr = props.imageUrl.links[0].href;
-    // }    
-
-    // if(preStr.startsWith('https') && preStr.endsWith('.jpg')){
-    //     toShow = preStr;
-    // }
-
-    // console.log(toShow);
+const ImageShow = (props) => {    
 
     return (
         <div className="card-container">
             <div className="card-title">
-                <h3>{props.title}</h3>
+                <h4>{props.title}</h4>
             </div>
             <div className="image-container">
-                <img src={props.imageUrl} alt={props.imageUrl.alt_description} />
+                <img src={props.imageUrl} alt={props.title} />
             </div>
             <div className="card-content">
 
