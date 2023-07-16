@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+
 import './ImageShow.css';
 
 const ImageShow = (props) => {    
 
-    let noLocation = 'No location in metadata';
-    let noPhotograph = 'No photographer in metadata';   
+    let noLocation = 'Unknown location';
+    let noPhotograph = 'Unknown photographer';
 
     return (
          <div className="card-container">
@@ -17,8 +17,8 @@ const ImageShow = (props) => {
             <div className="card-content">
 
                 <div className="card-body">
-                    <p>{props.location}</p>
-                    <p>{props.photogrName}</p>
+                    <p>{props.location ? props.location : noLocation}</p>
+                    <p>{props.photogrName ? props.photogrName : noPhotograph}</p>
                 </div>
             </div>
             <div className="btn">

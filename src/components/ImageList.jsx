@@ -6,9 +6,9 @@ const ImageList = (props) => {
     
     const [flag, setFlag] = useState(true);    
 
-    useEffect(() => {setFlag(!flag)}, [props.termFromInput]);
-    //years too
-
+    useEffect(() => {setFlag(!flag)}, 
+    [props.termFromInput.term, props.termFromInput.yearStart, props.termFromInput.yearEnd]);
+    
     const renderedImages = props.images.map(function (image) {
 
         let imageUrl = '';
@@ -21,31 +21,24 @@ const ImageList = (props) => {
             title = image.data[0].title;
         }
 
-        if (image.data[0].nasa_id && flag) {
-            console.log('uaua');
+        if (image.data[0].nasa_id && flag) {            
             props.handleMetadata(image.data[0].nasa_id);
             setFlag(false);
-        }
+        }        
         
-        //console.log(props.metadata);
-        //console.log(props.metadata['AVAIL:Location']);
-        //console.log(props.metadata['AVAIL:NASAID']);
+        let location = '';
+        let photogrName = '';
 
-        let nasaId = '';
-        //let availTitle = '';
-
-        if(props.metadata){
-            //console.log(props.metadata);
+        if(props.metadata){            
             for(let elem of props.metadata){
-                if(elem['AVAIL:NASAID'] == image.data[0].nasa_id){
-                    nasaId = elem['AVAIL:NASAID'];
-                    console.log(nasaId);
-                    //availTitle = elem['AVAIL:Title'];
+                if(elem !== undefined && elem['AVAIL:NASAID'] && elem['AVAIL:NASAID'] === image.data[0].nasa_id){
+                    location = elem['AVAIL:Location'];
+                    photogrName = elem['AVAIL:Photographer'];                    
                 }
             }
         }        
 
-        return  <ImageShow title={title} location={nasaId} photogrName={props.metadata['AVAIL:Photographer']} imageUrl={imageUrl} key={image.href} />
+        return  <ImageShow title={title} location={location} photogrName={photogrName} imageUrl={imageUrl} key={image.href} />
     });    
 
     return (

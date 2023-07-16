@@ -7,30 +7,28 @@ const App = () => {
 
     const [images, setImages] = useState([]);
     const [metadata, setMetadata] = useState([]);
-    const [termFromInput, setTermFromInput] = useState('');
-    //const [nasaId, setNasaId] = useState([]);
-
+    const [termFromInput, setTermFromInput] = useState({});
+    
     const handleSubmit = async (term, yearStart, yearEnd) => {
 
-        let result = await searchImages(term, yearStart, yearEnd);
-
-        //console.log(result);
+        let result = await searchImages(term, yearStart, yearEnd);        
         
         setImages(result);
-        setTermFromInput(term);
+        setTermFromInput({
+          term,
+          yearStart,
+          yearEnd
+        });
     }
 
     const handleMetadata = async (nasa_id) => {
       
-      let result = await fetchMetadata(nasa_id);
-
-      //console.log(result['AVAIL:NASAID']);
+      let result = await fetchMetadata(nasa_id);      
 
       if(images){        
         setMetadata((prev) => {
           return [...prev, result];
-        });
-        //setMetadata(result);
+        });        
       }      
     }    
 

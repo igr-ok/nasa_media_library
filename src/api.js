@@ -1,34 +1,59 @@
 import axios from 'axios';
 
 const searchImages = async (term, yearStart, yearEnd) => {
-    //try catch here
-   const response = await axios.get('https://images-api.nasa.gov/search', {
-    headers: {
-        
-    },
-    params: {
-        q: term,
-        media_type: "image",
-        year_start: yearStart,
-        year_end: yearEnd
+
+    let fetchURL = '';
+    if (yearStart === "" && yearEnd === "")
+        fetchURL = `https://images-api.nasa.gov/search?q=${term}&media_type=image`;
+    else if (yearStart === "")
+        fetchURL = `https://images-api.nasa.gov/search?q=${term}&year_end=${yearEnd}&media_type=image`;
+    else if (yearEnd === "")
+        fetchURL = `https://images-api.nasa.gov/search?q=${term}&year_start=${yearStart}&media_type=image`;
+    else
+        fetchURL = `https://images-api.nasa.gov/search?q=${term}&year_start=${yearStart}&year_end=${yearEnd}&media_type=image`;
+
+    try {
+        const response = await axios.get(fetchURL);
+        return response.data.collection.items;
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request);
+        } else {
+            console.log('Error', error.message);
+        }
+
+        console.log('Fetching...');
     }
-   });
-   //console.log(response.data.collection.items);
-   //if response 200 or something elese..
-   return response.data.collection.items;
+
 };
 
-const fetchMetadata = async (nasa_id) => {
+const fetchMetadata = async (nasa_id) => {    
 
-    const response = await axios.get(`http://images-assets.nasa.gov/image/${nasa_id}/metadata.json`);
+    try {
+        const response = await axios.get(`http://images-assets.nasa.gov/image/${nasa_id}/metadata.json`);
 
-    //console.log(response.data['AVAIL:Location']);
-    //console.log(response.data['AVAIL:Photographer']);
+        return response.data;
 
-    //console.log(response.data);
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request);
+        } else {
+            console.log('Error', error.message);
+        }
 
-    return response.data;
+        console.log('Fetching...');
+    }
+
+
 
 }
 
-export {searchImages, fetchMetadata};
+export { searchImages, fetchMetadata };
