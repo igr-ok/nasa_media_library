@@ -1,5 +1,5 @@
 import {searchImages, fetchMetadata} from './api';
-import SearchBar from './components/SearchBar';
+import SearchBarMain from './components/SearchBarMain';
 import ImageList from './components/ImageList';
 import { useState } from 'react';
 
@@ -34,7 +34,7 @@ const App = () => {
 
     return (
         <div>
-            <SearchBar handleSubmit={handleSubmit} />
+            <SearchBarMain handleSubmit={handleSubmit} />
             <ImageList termFromInput={termFromInput} handleMetadata={handleMetadata} images={images} metadata={metadata} />
         </div>
     )
