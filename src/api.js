@@ -4,7 +4,7 @@ const searchImages = async (term, yearStart, yearEnd) => {
     //try catch here
    const response = await axios.get('https://images-api.nasa.gov/search', {
     headers: {
-        //Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
+        
     },
     params: {
         q: term,
@@ -18,4 +18,17 @@ const searchImages = async (term, yearStart, yearEnd) => {
    return response.data.collection.items;
 };
 
-export default searchImages;
+const fetchMetadata = async (nasa_id) => {
+
+    const response = await axios.get(`http://images-assets.nasa.gov/image/${nasa_id}/metadata.json`);
+
+    //console.log(response.data['AVAIL:Location']);
+    //console.log(response.data['AVAIL:Photographer']);
+
+    //console.log(response.data);
+
+    return response.data;
+
+}
+
+export {searchImages, fetchMetadata};

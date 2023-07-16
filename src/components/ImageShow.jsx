@@ -1,9 +1,13 @@
+import { useEffect, useState } from 'react';
 import './ImageShow.css';
 
 const ImageShow = (props) => {    
 
+    let noLocation = 'No location in metadata';
+    let noPhotograph = 'No photographer in metadata';   
+
     return (
-        <div className="card-container">
+         <div className="card-container">
             <div className="card-title">
                 <h4>{props.title}</h4>
             </div>
