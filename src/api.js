@@ -52,8 +52,27 @@ const fetchMetadata = async (nasa_id) => {
         console.log('Fetching...');
     }
 
-
-
 }
 
-export { searchImages, fetchMetadata };
+const fetchCollection = async (nasa_id) => {
+    try {
+        const response = await axios.get(`http://images-assets.nasa.gov/image/${nasa_id}/collection.json`);
+
+        return response.data;
+
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request);
+        } else {
+            console.log('Error', error.message);
+        }
+
+        console.log('Fetching...');
+    }
+}
+
+export { searchImages, fetchMetadata, fetchCollection };

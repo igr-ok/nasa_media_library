@@ -39,7 +39,8 @@ h4,p {
 }
 
 .btn {
-    margin-top: auto;    
+    margin-top: auto;
+    margin-bottom: 0.5rem;    
 }
 
 .btn button {
@@ -47,7 +48,7 @@ h4,p {
     background-color: white;
     border: none;
     transition: 0.2s;
-    margin-bottom: 0.5rem;
+    
     border-radius: 3px;
     transform: scale(1.1);
 }

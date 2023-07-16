@@ -1,13 +1,13 @@
-
+import { Link } from 'react-router-dom';
 import './ImageShow.css';
 
-const ImageShow = (props) => {    
-
+const ImageShow = (props) => {
+    
     let noLocation = 'Unknown location';
     let noPhotograph = 'Unknown photographer';
 
     return (
-         <div className="card-container">
+        <div className="card-container">
             <div className="card-title">
                 <h4>{props.title}</h4>
             </div>
@@ -22,12 +22,17 @@ const ImageShow = (props) => {
                 </div>
             </div>
             <div className="btn">
-                <button>
-                    <a>
-                        View more
-                    </a>
-                </button>
+                <Link to="/show" state={{
+                    data: props.nasa_id, 
+                    title: props.title, 
+                    location: props.location,
+                    name: props.photogrName,
+                    description: props.description,
+                    keywords: props.keywords, 
+                    date: props.date,
+                     }}>View more</Link>
             </div>
+            
         </div>
     )
 }
