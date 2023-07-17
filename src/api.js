@@ -13,7 +13,7 @@ const searchImages = async (term, yearStart, yearEnd) => {
         fetchURL = `https://images-api.nasa.gov/search?q=${term}&year_start=${yearStart}&year_end=${yearEnd}&media_type=image`;
 
     try {
-        const response = await axios.get(fetchURL);
+        const response = await axios.get(fetchURL);                
         return response.data.collection.items;
     } catch (error) {
         if (error.response) {

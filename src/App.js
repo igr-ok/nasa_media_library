@@ -4,12 +4,14 @@ import ShowPage from './pages/ShowPage';
 
 const App = () => {
 
+  let previosData = JSON.parse(localStorage.getItem('nasa_collection_items')) || [];
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SearchPage />} />
-          <Route path='/show' element={<ShowPage />} />
+          <Route path='/show' element={previosData !== null ? <ShowPage /> : <h3>No data, try to search first</h3>} />
         </Routes>
       </BrowserRouter>
     </div>

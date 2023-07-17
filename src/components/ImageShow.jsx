@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import './ImageShow.css';
 
-const ImageShow = (props) => {
-    
+const ImageShow = (props) => {       
+   
     let noLocation = 'Unknown location';
     let noPhotograph = 'Unknown photographer';
+
+    const setToStorage = () => {
+        localStorage.setItem('nasa_collection_items', JSON.stringify(props.images));
+    }
 
     return (
         <div className="card-container">
@@ -22,14 +26,14 @@ const ImageShow = (props) => {
                 </div>
             </div>
             <div className="btn">
-                <Link to="/show" state={{
+                <Link onMouseOver={setToStorage} to="/show" state={{
                     data: props.nasa_id, 
                     title: props.title, 
                     location: props.location,
                     name: props.photogrName,
                     description: props.description,
                     keywords: props.keywords, 
-                    date: props.date,
+                    date: props.date,                    
                      }}>View more</Link>
             </div>
             

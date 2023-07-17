@@ -13,15 +13,24 @@ export default function SearchBarMain(props) {
         const [yearEnd, setYearEnd] = useState('');
         const { enqueueSnackbar } = useSnackbar();
 
+        const onChangeInp = (event) => {
+            setInpVal(event.target.value);
+            localStorage.removeItem('nasa_collection_items');
+        }
+
         const onChangeEnd = (date, dateString) => {
             setYearEnd(dateString);
+            localStorage.removeItem('nasa_collection_items');
         };
 
         const onChangeStart = (date, dateString) => {
             setYearStart(dateString);
+            localStorage.removeItem('nasa_collection_items');
         };
 
         const validationFunc = () => {
+
+            localStorage.removeItem('nasa_collection_items');
 
             if (inpVal === "") {
                 enqueueSnackbar('Input search word please', { variant: "error" });
@@ -43,7 +52,7 @@ export default function SearchBarMain(props) {
 
         return (
             <div className='search-bar'>                
-                <Input className='input' name='search' onChange={(event) => setInpVal(event.target.value)} value={inpVal} placeholder="Let`s search the moon.." />
+                <Input className='input' name='search' onChange={onChangeInp} value={inpVal} placeholder="Let`s search the moon.." />
                 <DatePicker onChange={onChangeStart} picker="year" placeholder="Select start year.." />
                 <DatePicker onChange={onChangeEnd} picker="year" placeholder="Select end year.." />                
                 <Button onClick={() => validationFunc()} type="primary" icon={<SearchOutlined />}>
