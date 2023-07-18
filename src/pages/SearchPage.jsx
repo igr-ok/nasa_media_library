@@ -4,14 +4,14 @@ import ImageList from '../components/ImageList';
 import { useState } from 'react';
 
 
-const SearchPage = () => {
+const SearchPage = (props) => {
 
     const [images, setImages] = useState([]);
     const [metadata, setMetadata] = useState([]);
     const [termFromInput, setTermFromInput] = useState({});
     const [emptyResults, setEmptyresults] = useState(null);
 
-    const previosData = JSON.parse(localStorage.getItem('nasa_collection_items'));
+    const previosData = JSON.parse(sessionStorage.getItem('nasa_collection_items'));
 
     const handleSubmit = async (term, yearStart, yearEnd) => {
 
@@ -40,12 +40,12 @@ const SearchPage = () => {
                 return [...prev, result];
             });
         }
-    }
+    }    
 
     return (
         <div>
             <SearchBarMain handleSubmit={handleSubmit} />
-            {emptyResults ? emptyResults : <ImageList termFromInput={termFromInput} handleMetadata={handleMetadata} images={previosData ? previosData : images} metadata={metadata} />}
+            {emptyResults ? emptyResults : <ImageList termFromInput={termFromInput} handleMetadata={handleMetadata} images={previosData ? previosData : images} metadata={metadata} />}            
         </div>
     )
 }

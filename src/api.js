@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const searchImages = async (term, yearStart, yearEnd) => {
 
     let fetchURL = '';

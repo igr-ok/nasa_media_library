@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import ImageShow from './ImageShow';
 
 test("renders", () => {
 
-  render (<App />);
+  render (<ImageShow />);
   
   screen.debug();
   

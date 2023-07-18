@@ -1,12 +1,13 @@
+import React from 'react';
 import '../css/SearchBar.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DatePicker, Button, Input } from 'antd';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import { SearchOutlined } from '@ant-design/icons';
 
-export default function SearchBarMain(props) {
+const SearchBarMain = (props) => {
 
-    const SearchBar = () => {
+    const SearchBar = () => {   
 
         const [inpVal, setInpVal] = useState('');
         const [yearStart, setYearStart] = useState('');
@@ -15,22 +16,22 @@ export default function SearchBarMain(props) {
 
         const onChangeInp = (event) => {
             setInpVal(event.target.value);
-            localStorage.removeItem('nasa_collection_items');
+            sessionStorage.removeItem('nasa_collection_items');
         }
 
         const onChangeEnd = (date, dateString) => {
             setYearEnd(dateString);
-            localStorage.removeItem('nasa_collection_items');
+            sessionStorage.removeItem('nasa_collection_items');
         };
 
         const onChangeStart = (date, dateString) => {
             setYearStart(dateString);
-            localStorage.removeItem('nasa_collection_items');
+            sessionStorage.removeItem('nasa_collection_items');
         };
 
-        const validationFunc = () => {
+        const validationFunc = () => {            
 
-            localStorage.removeItem('nasa_collection_items');
+            sessionStorage.removeItem('nasa_collection_items');
 
             if (inpVal === "") {
                 enqueueSnackbar('Input search word please', { variant: "error" });
@@ -45,16 +46,16 @@ export default function SearchBarMain(props) {
                 return 0;
             }
             else {
-                console.log("fetch data");
+                console.log("fetch data");                
                 props.handleSubmit(inpVal, yearStart, yearEnd);
             }
         }
 
         return (
-            <div className='search-bar'>                
+            <div className='search-bar'>
                 <Input className='input' name='search' onChange={onChangeInp} value={inpVal} placeholder="Let`s search the moon.." />
                 <DatePicker onChange={onChangeStart} picker="year" placeholder="Select start year.." />
-                <DatePicker onChange={onChangeEnd} picker="year" placeholder="Select end year.." />                
+                <DatePicker onChange={onChangeEnd} picker="year" placeholder="Select end year.." />
                 <Button onClick={() => validationFunc()} type="primary" icon={<SearchOutlined />}>
                     Search
                 </Button>
@@ -67,4 +68,7 @@ export default function SearchBarMain(props) {
             <SearchBar />
         </SnackbarProvider>
     );
+
 };
+
+export default SearchBarMain;

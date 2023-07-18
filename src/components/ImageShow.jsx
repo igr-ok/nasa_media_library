@@ -7,7 +7,7 @@ const ImageShow = (props) => {
     let noPhotograph = 'Unknown photographer';
 
     const setToStorage = () => {
-        localStorage.setItem('nasa_collection_items', JSON.stringify(props.images));
+        sessionStorage.setItem('nasa_collection_items', JSON.stringify(props.images));
     }
 
     return (
@@ -25,7 +25,7 @@ const ImageShow = (props) => {
                     <p>{props.photogrName ? props.photogrName : noPhotograph}</p>
                 </div>
             </div>
-            <div className="btn">
+            <div className="btn">            
                 <Link onMouseOver={setToStorage} to="/show" state={{
                     data: props.nasa_id, 
                     title: props.title, 

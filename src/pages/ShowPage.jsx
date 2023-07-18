@@ -5,7 +5,7 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 import { fetchCollection } from '../api';
 import '../css/ImageShow.css';
 
-function ShowPage() {
+function ShowPage(props) {    
     
     const location = useLocation();
     const data = location.state ? location.state.data : '';
@@ -20,9 +20,9 @@ function ShowPage() {
 
     useEffect(() => { handleCollection(data) }, []);
 
-    return (<>
+    return (<div>
 
-        <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" component={Link} to='/' sx={{ mr: 2 }}  ><ArrowBack /></IconButton>
+        <IconButton data-testid="showPage-component" size="large" edge="start" color="inherit" aria-label="open drawer" component={Link} to='/' sx={{ mr: 2 }}  ><ArrowBack /></IconButton>
         <div className="card-container-show">
             <div className="card-title">
                 <h4>{location.state ? location.state.title : 'No data, search or "view more" first'}</h4>
@@ -41,7 +41,7 @@ function ShowPage() {
                 </div>
             </div>
         </div>
-    </>
+    </div>
     )
 
 }
