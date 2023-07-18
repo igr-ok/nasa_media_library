@@ -1,4 +1,4 @@
-import './SearchBar.css';
+import '../css/SearchBar.css';
 import { useState } from "react";
 import { DatePicker, Button, Input } from 'antd';
 import { SnackbarProvider, useSnackbar } from 'notistack';

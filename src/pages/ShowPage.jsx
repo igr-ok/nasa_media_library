@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import { fetchCollection } from '../api';
-import '../components/ImageShow.css';
+import '../css/ImageShow.css';
 
 function ShowPage() {
     
@@ -15,7 +15,7 @@ function ShowPage() {
 
         let result = await fetchCollection(nasa_id);
 
-        setImage(location.state ? result[1] : '');
+        setImage(location.state ? result[0] : '');
     }
 
     useEffect(() => { handleCollection(data) }, []);

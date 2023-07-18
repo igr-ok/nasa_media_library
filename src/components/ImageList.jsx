@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './ImageList.css';
+import '../css/ImageList.css';
 import ImageShow from './ImageShow';
 
 const ImageList = (props) => {
